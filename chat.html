@@ -64,8 +64,7 @@
       });
 
       // Display AI response in the chat box
-      const aiMessage = await aiResponse.text();
-      appendMessage('AI', aiMessage);
+      appendMessage('AI', aiResponse);
 
       // Clear input field
       messageInput.value = '';
