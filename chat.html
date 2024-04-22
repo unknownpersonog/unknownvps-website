@@ -1,0 +1,82 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <style>
+    /* Add your CSS styles for the chat interface here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .chat-box {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      overflow-y: scroll;
+      height: 300px;
+    }
+    .message {
+      margin-bottom: 10px;
+    }
+    #message-input {
+      width: 80%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #send-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-box" id="chat-box">
+    <!-- Display chat messages here -->
+  </div>
+  <form id="chat-form">
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button type="submit" id="send-button">Send</button>
+  </form>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const chatForm = document.getElementById('chat-form');
+    const messageInput = document.getElementById('message-input');
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const userMessage = messageInput.value;
+
+      // Send user message to the server (use fetch or WebSocket)
+      const aiResponse = await fetch('/chat', {
+        method: 'POST',
+        body: userMessage,
+      });
+
+      // Display AI response in the chat box
+      const aiMessage = await aiResponse.text();
+      appendMessage('AI', aiMessage);
+
+      // Clear input field
+      messageInput.value = '';
+    });
+
+    function appendMessage(sender, text) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message';
+      messageDiv.textContent = `${sender}: ${text}`;
+      chatBox.appendChild(messageDiv);
+    }
+  </script>
+</body>
+</html>
