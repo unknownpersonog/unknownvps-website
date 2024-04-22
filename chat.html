@@ -40,8 +40,8 @@
 </head>
 <body>
   <div id="image-container">
-    <!-- Display image returned by the server here -->
-    <img id="output-image" src="#" alt="AI Response">
+    <!-- Display response from the server here -->
+    <div id="output-response"></div>
   </div>
   <form id="chat-form">
     <input type="text" id="message-input" placeholder="Type your message...">
@@ -51,7 +51,7 @@
   <script>
     const chatForm = document.getElementById('chat-form');
     const messageInput = document.getElementById('message-input');
-    const outputImage = document.getElementById('output-image');
+    const outputResponse = document.getElementById('output-response');
 
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -63,9 +63,9 @@
         body: userMessage,
       });
 
-      // Display AI response image
-      const imageUrl = await aiResponse.text();
-      outputImage.src = imageUrl;
+      // Display AI response in div
+      const responseData = await aiResponse.text();
+      outputResponse.innerHTML = responseData;
 
       // Clear input field
       messageInput.value = '';
