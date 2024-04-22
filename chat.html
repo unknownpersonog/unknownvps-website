@@ -58,7 +58,7 @@
       const userMessage = messageInput.value;
 
       // Send user message to the server (use fetch or WebSocket)
-      const aiResponse = await fetch('/chat', {
+      const aiResponse = await fetch('https://imager.unknownvps.workers.dev/', {
         method: 'POST',
         body: userMessage,
       });
