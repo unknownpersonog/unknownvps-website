@@ -3,54 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat App</title>
+  <title>Umager</title>
   <style>
     /* Add your CSS styles for the chat interface here */
     body {
       font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
     }
     #image-container {
       max-width: 512px;
-      margin: 0 auto;
+      margin: 20px auto;
       padding: 20px;
-      border: 1px solid #ccc;
       border-radius: 10px;
-      background-color: #f9f9f9;
+      background-color: #292929;
       overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     #chat-form {
-      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
     }
     #message-input {
-      width: calc(100% - 70px);
-      padding: 5px;
-      border: 1px solid #ccc;
+      padding: 10px;
+      border: none;
       border-radius: 5px;
+      background-color: #3a3a3a;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    #output-iframe {
+      width: 100%;
+      height: 512px; /* Adjust height as needed */
+      border: 2px solid #007bff;
+      border-radius: 10px;
     }
     #send-button {
-      width: 60px;
+      align-self: flex-end;
       background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 5px;
-      padding: 5px;
+      padding: 10px 20px;
       cursor: pointer;
-    }
-    #output-iframe {
-      width: 512px;
-      height: 512px; /* Adjust height as needed */
-      border: none;
     }
   </style>
 </head>
 <body>
   <div id="image-container">
     <!-- Display response from the server here -->
+    <form id="chat-form" target="output-iframe" action="https://umager.unknownvps.eu.org/" method="POST">
+      <input type="text" id="message-input" name="userMessage" placeholder="Type your message...">
+      <button type="submit" id="send-button">Send</button>
+    </form>
     <iframe id="output-iframe" name="output-iframe"></iframe>
   </div>
-  <form id="chat-form" target="output-iframe" action="https://umager.unknownvps.eu.org/" method="POST">
-    <input type="text" id="message-input" name="userMessage" placeholder="Type your message...">
-    <button type="submit" id="send-button">Send</button>
-  </form>
 </body>
 </html>
